@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Unit Converter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    #converter {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+    }
+    #result {
+      text-align: center;
+      margin-top: 20px;
+    }
+    label {
+      margin-right: 10px;
+    }
+    input {
+      width: 100px;
+    }
+    button {
+      padding: 10px 20px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Unit Converter</h1>
+  <div id="converter">
+    <input type="number" id="inputValue">
+    <select id="fromUnit">
+      <option value="cm">Centimeter (cm)</option>
+      <option value="inch">Inch (in)</option>
+      <option value="m">Meter (m)</option>
+      <option value="km">Kilometer (km)</option>
+    </select>
+    <label for="toUnit">to</label>
+    <select id="toUnit">
+      <option value="cm">Centimeter (cm)</option>
+      <option value="inch">Inch (in)</option>
+      <option value="m">Meter (m)</option>
+      <option value="km">Kilometer (km)</option>
+    </select>
+    <button onclick="convert()">Convert</button>
+  </div>
+  <div id="result"></div>
+
+  <script>
+    function convert() {
+      var inputValue = document.getElementById('inputValue').value;
+      var fromUnit = document.getElementById('fromUnit').value;
+      var toUnit = document.getElementById('toUnit').value;
+
+      var result;
+      
+      if (fromUnit === toUnit) {
+        result = inputValue;
+      } else if (fromUnit === 'cm' && toUnit === 'inch') {
+        result = inputValue / 2.54;
+      } else if (fromUnit === 'inch' && toUnit === 'cm') {
+        result = inputValue * 2.54;
+      } else if (fromUnit === 'cm' && toUnit === 'm') {
+        result = inputValue / 100;
+      } else if (fromUnit === 'm' && toUnit === 'cm') {
+        result = inputValue * 100;
+      } else if (fromUnit === 'cm' && toUnit === 'km') {
+        result = inputValue / 100000;
+      } else if (fromUnit === 'km' && toUnit === 'cm') {
+        result = inputValue * 100000;
+      } else if (fromUnit === 'inch' && toUnit === 'm') {
+        result = inputValue * 0.0254;
+      } else if (fromUnit === 'm' && toUnit === 'inch') {
+        result = inputValue / 0.0254;
+      } else if (fromUnit === 'inch' && toUnit === 'km') {
+        result = inputValue * 0.0000254;
+      } else if (fromUnit === 'km' && toUnit === 'inch') {
+        result = inputValue / 0.0000254;
+      } else if (fromUnit === 'm' && toUnit === 'km') {
+        result = inputValue / 1000;
+      } else if (fromUnit === 'km' && toUnit === 'm') {
+        result = inputValue * 1000;
+      }
+      
+      document.getElementById('result').textContent = result;
+    }
+  </script>
+</body>
+</html>
